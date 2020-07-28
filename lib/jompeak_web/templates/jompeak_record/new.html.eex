@@ -1,0 +1,11 @@
+<%= if @current_user do %>
+<h1>Add Debt</h1>
+
+    <%= form_for @conn, Routes.jompeak_record_path(@conn, :create), [as: :jompeaklist], fn f -> %>
+        <%= select f, :currency, [:USD, :SDG]%>
+      <%= submit "Submit" %>
+    <% end %>
+
+<% else %>
+<h1>Please log in to continue</h1>
+<% end %>
