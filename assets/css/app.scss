@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 /* Alerts and form errors */
 .alert {
   padding: 15px;
@@ -28,4 +28,55 @@
 }
 .alert:empty {
   display: none;
+}
+
+.amount_owe_text_input{
+  width:500px;
+}
+
+.debtor_name_text_input{
+  width:500px;
+}
+
+/*adding background to header*/
+#header_color{
+  background-color: #20C983;
+}
+
+.nav_link{
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+}
+
+.nav_link:hover{
+  color: #00ACB1;
+}
+
+.currency_converter{
+  margin: auto;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
+  cursor: pointer;
+  padding: 10px;
+  border: 0 none;
+  background: #1c8d76;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.add_debt_record{
+  margin-top: 10px;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
+  cursor: pointer;
+  padding: 10px;
+  border: 0 none;
+  background: #1c8d76;
+  color: #fff;
+  border-radius: 3px;
 }

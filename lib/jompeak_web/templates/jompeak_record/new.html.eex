@@ -1,9 +1,14 @@
 <%= if @current_user do %>
 <h1>Add Debt</h1>
 
-    <%= form_for @conn, Routes.jompeak_record_path(@conn, :create), [as: :jompeaklist], fn f -> %>
-        <%= select f, :currency, [:USD, :SDG]%>
-      <%= submit "Submit" %>
+    <%= form_for @conn, Routes.jompeak_record_path(@conn, :create), [as: :jompeak_record], fn f -> %>
+        Amount Owe: 
+        <%= text_input f, :amount_owe, class: "amount_owe_text_input"%>
+        <%= select f, :currency, get_currency_symbol()%>
+        <br>
+        Debtor's name:
+        <%= text_input f, :debtor_name, class: "debtor_name_text_input"%>
+        <br><%= submit "Submit"%>
     <% end %>
 
 <% else %>

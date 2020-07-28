@@ -9,22 +9,22 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
+    <header id="header_color">
       <section class="container">
         <nav role="navigation">
           <ul>
           <%= if @current_user do %>
-            <li><%= @current_user.email %> (<%= @current_user.id%>)</li>
-            <li><%= link "Sign out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %></li>
+            <li class = "nav_link"><%= @current_user.email %></li>
+            <li class = "nav_link">|</li>
+            <li><%= link "Sign out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete", class: "nav_link"%></li>
           <% else %>
-            <li><%= link "Register", to: Routes.user_path(@conn, :new) %></li>
-            <li><%= link "Sign in", to: Routes.session_path(@conn, :new) %></li>
+            <li><%= link "Register", to: Routes.user_path(@conn, :new), class: "nav_link" %></li>
+            <li class = "nav_link">|</li>
+            <li><%= link "Sign in", to: Routes.session_path(@conn, :new), class: "nav_link" %></li>
           <% end %>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
+          <img src="<%= Routes.static_path(@conn, "/images/jompeak_logo.png") %>" alt="Jompeak Logo"/>
       </section>
     </header>
     <main role="main" class="container">
