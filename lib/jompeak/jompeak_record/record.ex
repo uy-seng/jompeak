@@ -14,7 +14,7 @@ defmodule Jompeak.Jompeak_record.Record do
   @doc false
   def changeset(record, attrs \\%{}) do
     record
-    |> cast(attrs, [:debtor_name, :amount_owe, :currency])
+    |> cast(attrs, [:debtor_name, :amount_owe, :currency, :user_id])
     |> validate_required([:debtor_name, :amount_owe, :currency])
   end
 end

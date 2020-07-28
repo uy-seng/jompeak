@@ -31,7 +31,11 @@
 }
 
 .amount_owe_text_input{
-  width:500px;
+  width:448px;
+}
+
+.currency_select{
+  background-color: white;
 }
 
 .debtor_name_text_input{
@@ -41,6 +45,9 @@
 /*adding background to header*/
 #header_color{
   background-color: #20C983;
+  margin-top: -8px;
+  margin-left: -9px;
+  width: 102%;
 }
 
 .nav_link{
@@ -54,29 +61,37 @@
 }
 
 .currency_converter{
-  margin: auto;
-  display: block;
-  font-size: 14px;
-  text-align: center;
-  transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
-  cursor: pointer;
-  padding: 10px;
-  border: 0 none;
-  background: #1c8d76;
-  color: #fff;
-  border-radius: 3px;
+    margin: auto;
+    margin-top: 52px;
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
+    cursor: pointer;
+    padding: 10px;
+    border: 0 none;
+    font-family: Quicksand;
+    font-weight: 700;
+    background: #1ed589;
+    color: #fff;
+    border-radius: 29px;
+    width: 316px;
 }
 
 .add_debt_record{
-  margin-top: 10px;
-  display: block;
-  font-size: 14px;
-  text-align: center;
-  transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
-  cursor: pointer;
-  padding: 10px;
-  border: 0 none;
-  background: #1c8d76;
-  color: #fff;
-  border-radius: 3px;
+    margin: auto;
+    margin-top: 19px;
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    transition: background-color .3s ease-in-out,color .3s ease-in-out,border-color .3s ease-in-out,opacity .3s ease-in-out;
+    cursor: pointer;
+    padding: 10px;
+    border: 0 none;
+    font-family: Quicksand;
+    font-weight: 700;
+    background: #1ed589;
+    color: #fff;
+    border-radius: 29px;
+    width: 316px;
 }

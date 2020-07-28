@@ -57,6 +57,7 @@ config :jompeak, JompeakWeb.Endpoint,
 # Watch static and templates for browser reloading.
 config :jompeak, JompeakWeb.Endpoint,
   live_reload: [
+    interval: 1,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",

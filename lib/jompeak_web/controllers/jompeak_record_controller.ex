@@ -4,6 +4,7 @@ defmodule JompeakWeb.JompeakRecordController do
     alias Jompeak.Jompeak_record.Record
     alias Jompeak.Jompeak_record
     alias Jompeak.Repo
+    import Guardian.Plug
 
     def new(conn, _params) do
         render(conn, "new.html")
@@ -30,7 +31,8 @@ defmodule JompeakWeb.JompeakRecordController do
     def create(conn, %{"jompeak_record" => %{"amount_owe" => amount_owe, "currency" => currency, "debtor_name" => debtor_name}}) do
     #Here will be the implementation
         amount_owe = convert_to_float(conn, amount_owe)
-        case Jompeak_record.create_record(%{amount_owe: amount_owe, currency: currency, debtor_name: debtor_name}) do
+        user = current_resource(conn)
+        case Jompeak_record.create_record(%{amount_owe: amount_owe, currency: currency, debtor_name: debtor_name,user_id: user.id}) do
             {:ok, new_record} ->
                 conn
                 |> put_flash(:info, "#{debtor_name}'s debt has been added to your record!")

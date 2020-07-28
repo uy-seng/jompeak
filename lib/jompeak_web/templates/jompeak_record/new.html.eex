@@ -1,16 +1,17 @@
 <%= if @current_user do %>
+<section class = "phx-hero">
 <h1>Add Debt</h1>
 
     <%= form_for @conn, Routes.jompeak_record_path(@conn, :create), [as: :jompeak_record], fn f -> %>
         Amount Owe: 
         <%= text_input f, :amount_owe, class: "amount_owe_text_input"%>
-        <%= select f, :currency, get_currency_symbol()%>
+        <%= select f, :currency, get_currency_symbol(), class: "currency_select"%>
         <br>
         Debtor's name:
         <%= text_input f, :debtor_name, class: "debtor_name_text_input"%>
         <br><%= submit "Submit"%>
     <% end %>
-
+</section>
 <% else %>
 <h1>Please log in to continue</h1>
 <% end %>
