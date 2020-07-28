@@ -1,0 +1,17 @@
+<h1>Listing <%= @current_user.username%>'s to-be-collected debt</h1>
+<table class = "table">
+<tr>
+    <th> Debtor's name </th>
+    <th> Amount Owe </th>
+    <th> Date Added </th>
+</tr>
+<%= for record <- @records do%>
+<%= if record.user_id == @current_user.id do %>
+  <tr>
+    <td><%= record.debtor_name %></td>
+    <td><%= Kernel.trunc(record.amount_owe) %>  <%= record.currency%></td>
+    <td><%= record.inserted_at %></td>
+  </tr>
+<% end %>
+<% end %>
+</table> 

@@ -42,5 +42,9 @@ defmodule JompeakWeb.JompeakRecordController do
         end
     end
 
+    def show(conn, params) do
+        records =  Jompeak.Jompeak_record.list_records()
+        render(conn, "show.html", records: records)
+    end
 
 end

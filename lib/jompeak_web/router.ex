@@ -25,7 +25,8 @@ defmodule JompeakWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :delete, :create]
-    resources "/add_debt", JompeakRecordController, only: [:new, :create]
+    resources "/debt_record", JompeakRecordController, only: [:new, :create, :show]
+    resources "/currency_converter", CurrencyConverterController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

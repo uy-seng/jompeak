@@ -7,8 +7,12 @@
   <% end %>
   </h1>
 
-  <%= link "Currency converter", to: "/users/new", class: "currency_converter" %>
-  <%= link "Add debt record", to: "/add_debt/new", class: "add_debt_record" %>
+  <%= link "Currency converter", to: "/currency_converter/new", class: "currency_converter" %>
+  <%= if @current_user do %>
+    <%= link "Add debt record", to: "/debt_record/new", class: "add_debt_record" %>
+    <%= link "View debt record", to: "/debt_record/#{@current_user.id}", class: "add_debt_record" %>
+  <% end %>
+
 </section>
 
 

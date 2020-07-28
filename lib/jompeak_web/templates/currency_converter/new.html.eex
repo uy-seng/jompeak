@@ -1,0 +1,11 @@
+<h1>Currency Converter</h1>
+
+<%= form_for @conn, Routes.currency_converter_path(@conn, :create), fn f -> %>
+<p>Input:
+  <%= text_input f, :value %>
+</p>
+<%= select f, :currency_from, get_currency_symbol(), class: "currency_select"%>
+ to 
+<%= select f, :currency_to, get_currency_symbol(), class: "currency_select"%>
+<br><%= submit "Convert" %>
+<% end %>

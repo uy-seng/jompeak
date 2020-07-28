@@ -24,7 +24,9 @@
           <% end %>
           </ul>
         </nav>
+        <a href="<%= Routes.page_path(@conn, :index) %>">
           <img src="<%= Routes.static_path(@conn, "/images/jompeak_logo.png") %>" alt="Jompeak Logo"/>
+        </a>
       </section>
     </header>
     <main role="main" class="container">
