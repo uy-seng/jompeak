@@ -1,0 +1,9 @@
+<h1>Setting</h1>
+<%= form_for @conn, Routes.user_path(@conn, :update, @current_user.id), [as: :changes], fn f -> %>
+<p>Username:
+    <%= text_input f, :changes_username, placeholder: "#{@current_user.username}", class: "setting_username" %></p>
+<p>Password: <%= password_input f, :changes_password, class: "setting_username", placeholder: "Enter new password here"%></p>
+ <p>Default Currency: <%= select f, :changes_default_currency, get_user_currency(@conn), class: "currency_select"%></p>
+ <%= submit "Apply Changes"%>
+ <% end %>
+

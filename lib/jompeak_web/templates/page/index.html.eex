@@ -11,6 +11,7 @@
   <%= if @current_user do %>
     <%= link "Add debt record", to: "/debt_record/new", class: "add_debt_record" %>
     <%= link "View debt record", to: "/debt_record/#{@current_user.id}", class: "add_debt_record" %>
+    <%= link "Setting", to: "/setting", class: "add_debt_record" %>
   <% end %>
 
 </section>

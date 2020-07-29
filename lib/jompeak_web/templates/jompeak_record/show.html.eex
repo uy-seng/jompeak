@@ -9,7 +9,7 @@
 <%= if record.user_id == @current_user.id do %>
   <tr>
     <td><%= record.debtor_name %></td>
-    <td><%= Kernel.trunc(record.amount_owe) %>  <%= record.currency%></td>
+    <td><%= show_default_currency_rates(record.amount_owe,record.currency, @current_user.default_currency)  %>  <%= @current_user.default_currency%></td>
     <td><%= record.inserted_at %></td>
   </tr>
 <% end %>

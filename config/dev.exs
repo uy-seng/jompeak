@@ -57,12 +57,16 @@ config :jompeak, JompeakWeb.Endpoint,
 # Watch static and templates for browser reloading.
 config :jompeak, JompeakWeb.Endpoint,
   live_reload: [
-    interval: 1,
+    interval: 100,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/jompeak_web/(live|views)/.*(ex)$",
       ~r"lib/jompeak_web/templates/.*(eex)$"
+    ],
+    backend: :fs_poll,
+    backend_opts: [
+    interval: 100
     ]
   ]
 

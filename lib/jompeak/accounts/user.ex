@@ -25,6 +25,11 @@ defmodule Jompeak.Accounts.User do
     |> unique_constraint(:username, message: "Username already existed.")
   end
 
+  def update_changeset(user, attrs \\%{}) do
+    user
+    |> cast(attrs,[:username, :password_hash, :default_currency])
+  end
+
   def registration_changeset(struct, params) do
     struct
     |> changeset(params)

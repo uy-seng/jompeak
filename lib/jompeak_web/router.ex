@@ -24,6 +24,8 @@ defmodule JompeakWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController, only: [:new, :create]
+    get "/setting", UserController, :setting
+    post "/setting/:id/apply_changes", UserController, :update
     resources "/sessions", SessionController, only: [:new, :delete, :create]
     resources "/debt_record", JompeakRecordController, only: [:new, :create, :show]
     resources "/currency_converter", CurrencyConverterController, only: [:new, :create]

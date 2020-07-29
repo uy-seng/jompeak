@@ -43,7 +43,7 @@ defmodule JompeakWeb.CurrencyConverterController do
                     end
             end
         conn
-        |> put_flash(:info, "Your converted value is #{converted_val}")
+        |> put_flash(:info, "#{value} #{currency_from} is equal to #{converted_val} #{currency_to}")
         |> redirect(to: Routes.currency_converter_path(conn, :new))
     end
 
