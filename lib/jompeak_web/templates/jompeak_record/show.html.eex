@@ -7,6 +7,7 @@
     <th> Date Added </th>
     <th> Payment Status</th>
     <th></th>
+    <th></th>
 </tr>
 
 <%= for record <- @records do%>
@@ -14,10 +15,19 @@
   <tr>
     <td><%= record.debtor_name %></td>
     <td><%= show_default_currency_rates(record.amount_owe,record.currency, @current_user.default_currency)  %>  <%= @current_user.default_currency%></td>
-    <td><%= Kernel.trunc(record.amount_owe)%> <%= record.currency%></td>
+    <td><%= :erlang.float_to_binary(record.amount_owe, decimals: 5)%> <%= record.currency%></td>
     <td><%= record.inserted_at %></td>
-    <td><%= record.payment_status%></td>
-    <td><%= link "Update Payment", to: Routes.update_payment_path(@conn, :update_payment, record.id), class: "update_payment"%>
+    <td>
+      <%= if record.payment_status == true do%>
+          Paid
+      <% else %>
+          Not yet
+      <% end %>
+    </td>
+    <%= if record.payment_status == false do %>
+      <td><%= link "Update Payment", to: Routes.update_payment_path(@conn, :update_payment, record.id), class: "update_payment"%>
+    <% end %>
+    <td><%= link "Show Payment", to: Routes.jompeak_record_payment_history_path(@conn, :show_payment_history, record.id), class: "update_payment"%>
   </tr>
 <% end %>
 <% end %>

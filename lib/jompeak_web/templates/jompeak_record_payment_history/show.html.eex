@@ -1,0 +1,20 @@
+<h1><%=get_user(@id).debtor_name%>'s Payment History</h1>
+<table>
+    <tr>
+        <th>Remaining debt (in <%= get_user(@id).currency%>)</th>
+        <th>Amount Paid (in <%= get_user(@id).currency%>)</th>
+        <th>Date Added</th>
+    </tr>
+    
+    <%= for payment <- Jompeak_record_payment_histroy.list_payment_histories() do %>
+     
+        <%= if payment.record_id == get_user(@id).id do %>
+          <tr>
+            <td><%= Float.round(payment.amount_owe - payment.amount_paid, 5)%></td>
+            <td><%= payment.amount_paid%></td>
+            <td><%= payment.inserted_at%></td>
+         </tr>
+        <% end %>
+    <% end %>
+
+</table>

@@ -15,7 +15,7 @@ defmodule Jompeak.Jompeak_record_payment_histroy.Payment_histroy do
   @doc false
   def changeset(payment_histroy, attrs) do
     payment_histroy
-    |> cast(attrs, [:debtor_name, :amount_owe, :amount_paid, :paid_status])
-    |> validate_required([:debtor_name, :amount_owe, :amount_paid])
+    |> cast(attrs, [:debtor_name, :amount_owe, :amount_paid, :paid_status, :record_id])
+    |> validate_required([:debtor_name, :amount_owe, :amount_paid, :record_id])
   end
 end

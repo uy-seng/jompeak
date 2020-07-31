@@ -33,6 +33,8 @@ defmodule JompeakWeb.UpdatePaymentView do
                                 case Map.fetch(rates, default_currency) do
                                     {:ok, default_currency_value}->
                                         default_currency_rate = default_currency_rate * default_currency_value * original_val
+                                        default_currency_rate = Float.round(default_currency_rate, 5)
+                                        Float.to_string(default_currency_rate, decimals: 5)
                                 end
                         end
                 

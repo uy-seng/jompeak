@@ -32,6 +32,7 @@ defmodule JompeakWeb.Router do
     post "/debt/record_id/:id/update_payment", UpdatePaymentController, :create
     get "/debt/record_id/:id/update_payment/convert", UpdatePaymentController, :convert
     resources "/currency_converter", CurrencyConverterController, only: [:new, :create]
+    get "/debt/record_id/:id/show_payment_history", JompeakRecordPaymentHistoryController, :show_payment_history 
   end
 
   # Other scopes may use custom stacks.

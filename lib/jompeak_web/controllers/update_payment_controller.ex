@@ -1,6 +1,8 @@
 defmodule JompeakWeb.UpdatePaymentController do
     use JompeakWeb, :controller
     alias Jompeak.Jompeak_record
+    alias Jompeak.Jompeak_record.Record
+    alias Jompeak.Jompeak_record_payment_histroy
 
     def update_payment(conn, %{"id" => id}) do
         value = ""
@@ -65,10 +67,36 @@ defmodule JompeakWeb.UpdatePaymentController do
                             |> redirect(to: Routes.update_payment_path(conn, :update_payment, id))
                         else
                             new_data = Jompeak_record.get_record!(id).amount_owe - convert_to_default_currency_rates(payment_val, payment_currency, Jompeak_record.get_record!(id).currency)
-                            # conn |> put_flash(:convert, "") |> redirect(to: Routes.page_path(conn, :index))
+                            new_data = Float.round(new_data, 5)
+
+                            if new_data == 0 do
+                                Jompeak_record_payment_histroy.create_payment_histroy(%{debtor_name: Jompeak_record.get_record!(id).debtor_name, amount_owe: Jompeak_record.get_record!(id).amount_owe, amount_paid: Float.round(convert_to_default_currency_rates(payment_val, payment_currency, Jompeak_record.get_record!(id).currency), 5), record_id: id, paid_status: true})
+                                #update value of amount owe in record schema
+                                Jompeak_record.update_record(Jompeak_record.get_record!(id), %{amount_owe: new_data, payment_status: true})
+                                conn |> put_flash(:info, "Payment for #{Jompeak_record.get_record!(id).debtor_name} updated") |> redirect(to: Routes.page_path(conn, :index))
+                            else
+                                # create payment history
+                                Jompeak_record_payment_histroy.create_payment_histroy(%{debtor_name: Jompeak_record.get_record!(id).debtor_name, amount_owe: Jompeak_record.get_record!(id).amount_owe, amount_paid: Float.round(convert_to_default_currency_rates(payment_val, payment_currency, Jompeak_record.get_record!(id).currency), 5), record_id: id})
+                                #update value of amount owe in record schema
+                                Jompeak_record.update_record(Jompeak_record.get_record!(id), %{amount_owe: new_data})
+                                conn |> put_flash(:info, "Payment for #{Jompeak_record.get_record!(id).debtor_name} updated") |> redirect(to: Routes.page_path(conn, :index))
+                                # conn |> put_flash(:convert, "") |> redirect(to: Routes.page_path(conn, :index))
+                            end
+
+                        end
+                    else
+                        new_data = Jompeak_record.get_record!(id).amount_owe - payment_val
+                        new_data = Float.round(new_data, 5)
+                        if new_data == 0 do
+                            Jompeak_record_payment_histroy.create_payment_histroy(%{debtor_name: Jompeak_record.get_record!(id).debtor_name, amount_owe: Jompeak_record.get_record!(id).amount_owe, amount_paid: Float.round(payment_val, 5), record_id: id, paid_status: true })
+                            Jompeak_record.update_record(Jompeak_record.get_record!(id), %{amount_owe: new_data, payment_status: true}) 
+                            conn |> put_flash(:info, "Payment for #{Jompeak_record.get_record!(id).debtor_name} updated") |> redirect(to: Routes.page_path(conn, :index))         
+                        else
+                            Jompeak_record_payment_histroy.create_payment_histroy(%{debtor_name: Jompeak_record.get_record!(id).debtor_name, amount_owe: Jompeak_record.get_record!(id).amount_owe, amount_paid: Float.round(payment_val, 5), record_id: id})
+                            Jompeak_record.update_record(Jompeak_record.get_record!(id), %{amount_owe: new_data}) 
+                            conn |> put_flash(:info, "Payment for #{Jompeak_record.get_record!(id).debtor_name} updated") |> redirect(to: Routes.page_path(conn, :index))  
                         end
 
-                    else
                     end
             
         end

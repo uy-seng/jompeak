@@ -8,18 +8,21 @@
 <!-- <input type="text" id="textInput" value=""> -->
 
 <%= form_for @conn, Routes.update_payment_path(@conn, :create, @id), [as: :update_form], fn f -> %>
-  <p>Remaining Debt: <%= Kernel.trunc(get_user(@id).amount_owe)%> <%= get_user(@id).currency%></p>
-  <p>Payment Value: <%= text_input f, :payment_val %><%= submit "Convert", name: "submit_button", value: "convert" %>
+  <p>Remaining Debt: <%= Kernel.trunc(get_user(@id).amount_owe)%> <%= get_user(@id).currency%>
+  => <%= convert_currency(get_user(@id).amount_owe, get_user(@id).currency, @current_user.default_currency)%> <%= @current_user.default_currency%>
+  </p>
 
+  <p>Payment Value: <%= text_input f, :payment_val %>
+  <br>
+  <p>** Optional Field: <br>
   <%= if String.length(String.trim(@value)) == 0 do %>
-    <%= text_input f, :converted_val, placeholder: "Please click convert to see currency in #{get_user(@id).currency}"%>
+    <%= text_input f, :converted_val, placeholder: "Please click convert to see your payment value in #{get_user(@id).currency}"%>
   <% else %>
     <%= text_input f, :converted_val, value: @value%>
   <% end %>
-
-  
+    <%= submit "Convert", name: "submit_button", value: "convert" %>
   </p>
-
+  </p>
 
   <p>Payment Currency: 
   <%= select f, :payment_currency, get_currency_symbol(), class: "currency_select"%>
