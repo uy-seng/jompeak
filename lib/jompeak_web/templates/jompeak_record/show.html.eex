@@ -2,15 +2,22 @@
 <table class = "table">
 <tr>
     <th> Debtor's name </th>
-    <th> Amount Owe </th>
+    <th> Amount Owe<br>(in default currency <%=@current_user.default_currency%>)</th>
+    <th > Amount Owe<br>(in original currency)</th>
     <th> Date Added </th>
+    <th> Payment Status</th>
+    <th></th>
 </tr>
+
 <%= for record <- @records do%>
 <%= if record.user_id == @current_user.id do %>
   <tr>
     <td><%= record.debtor_name %></td>
     <td><%= show_default_currency_rates(record.amount_owe,record.currency, @current_user.default_currency)  %>  <%= @current_user.default_currency%></td>
+    <td><%= Kernel.trunc(record.amount_owe)%> <%= record.currency%></td>
     <td><%= record.inserted_at %></td>
+    <td><%= record.payment_status%></td>
+    <td><%= link "Update Payment", to: Routes.update_payment_path(@conn, :update_payment, record.id), class: "update_payment"%>
   </tr>
 <% end %>
 <% end %>

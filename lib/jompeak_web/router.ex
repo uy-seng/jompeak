@@ -28,6 +28,9 @@ defmodule JompeakWeb.Router do
     post "/setting/:id/apply_changes", UserController, :update
     resources "/sessions", SessionController, only: [:new, :delete, :create]
     resources "/debt_record", JompeakRecordController, only: [:new, :create, :show]
+    get "/debt/record_id/:id/update_payment", UpdatePaymentController, :update_payment
+    post "/debt/record_id/:id/update_payment", UpdatePaymentController, :create
+    get "/debt/record_id/:id/update_payment/convert", UpdatePaymentController, :convert
     resources "/currency_converter", CurrencyConverterController, only: [:new, :create]
   end
 

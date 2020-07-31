@@ -7,6 +7,7 @@ defmodule Jompeak.Jompeak_record.Record do
     field :currency, :string
     field :debtor_name, :string
     field :user_id, :id
+    field :payment_status, :boolean, default: false
 
     timestamps()
   end

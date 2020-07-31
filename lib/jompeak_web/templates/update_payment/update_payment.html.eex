@@ -1,0 +1,29 @@
+<script>
+    function get_value(id) {
+          return document.getElementById(id).value; 
+        }
+</script>
+<h1>Update Payment</h1>
+<!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
+<!-- <input type="text" id="textInput" value=""> -->
+
+<%= form_for @conn, Routes.update_payment_path(@conn, :create, @id), [as: :update_form], fn f -> %>
+  <p>Remaining Debt: <%= Kernel.trunc(get_user(@id).amount_owe)%> <%= get_user(@id).currency%></p>
+  <p>Payment Value: <%= text_input f, :payment_val %><%= submit "Convert", name: "submit_button", value: "convert" %>
+
+  <%= if String.length(String.trim(@value)) == 0 do %>
+    <%= text_input f, :converted_val, placeholder: "Please click convert to see currency in #{get_user(@id).currency}"%>
+  <% else %>
+    <%= text_input f, :converted_val, value: @value%>
+  <% end %>
+
+  
+  </p>
+
+
+  <p>Payment Currency: 
+  <%= select f, :payment_currency, get_currency_symbol(), class: "currency_select"%>
+  </p>
+  <br><%= submit "Submit", name: "submit_button", value: "submit"%>
+<% end %>
+

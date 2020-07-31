@@ -12,6 +12,11 @@
     <%= link "Add debt record", to: "/debt_record/new", class: "add_debt_record" %>
     <%= link "View debt record", to: "/debt_record/#{@current_user.id}", class: "add_debt_record" %>
     <%= link "Setting", to: "/setting", class: "add_debt_record" %>
+  <% else %>
+    <br>
+    <br>
+    <br>
+    <h1>Please sign in to use JOMPEAK</h1>
   <% end %>
 
 </section>
