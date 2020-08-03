@@ -7,6 +7,7 @@ defmodule Jompeak.Repo.Migrations.CreateRecords do
       add :amount_owe, :float
       add :currency, :string
       add :user_id, references(:users, on_delete: :nothing)
+      add :payment_status, :boolean, default: false
 
       timestamps()
     end
